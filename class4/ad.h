@@ -63,7 +63,7 @@ class DualValue_ {
 
         DualValue_(const Scalar& v):
             value(v),
-            derivative(0);
+            derivative(0)
         {}
 
         DualValue_(const T& v, const T& d):
@@ -85,19 +85,19 @@ class DualValue_ {
 
         inline DualValue_& operator-=(const DualValue_& op) {
             value -= op.value;
-            derivate -= op.derivative;
+            derivative -= op.derivative;
             return *this;
         }
 
         inline DualValue_& operator*=(const DualValue_& op) {
             value *= op.value;
-            derivate *= derivative * op.value + value * op.derivative;
+            derivative *= derivative * op.value + value * op.derivative;
             return *this;
         }
         
         inline DualValue_& operator/=(const DualValue_& op) {
             value /= op.value;
-            derivate /= (derivative * op.value -value * op.derivative) / (op.value * op.value);
+            derivative /= (derivative * op.value -value * op.derivative) / (op.value * op.value);
             return *this;
         }
 
@@ -116,7 +116,7 @@ class DualValue_ {
 };
 
 template <typename T>
-inline std:ostream& operator<<(std::ostream& os, const DualValue_<T>& v) {
+inline std::ostream& operator<<(std::ostream& os, const DualValue_<T>& v) {
     os << "(v: " << v.value << " " << "d: " << v.derivative << ")";
     return os;
 }
