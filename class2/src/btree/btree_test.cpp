@@ -11,4 +11,6 @@ int main() {
   n->add(4);
   cerr << "ok here" << endl;
   cout << *n << endl;
+  cout << n->find(4) << endl;
+  cout << n->find(6) << endl;
 }
