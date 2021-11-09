@@ -22,7 +22,7 @@ int main() {
   cout << m + m2 << endl;
   MatF m3=m + m2;
  
-  cout << m + m2 << endl;
+  cout << m3 << endl;
 
   cout  << m3-m2 << endl;
   cout  << m * v1 << endl;
