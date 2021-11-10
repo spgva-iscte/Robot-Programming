@@ -14,7 +14,7 @@ struct CompareIndex{
                   const PointWithIndex& b) const {
     // Todo: this compares the indices
     // what should I return
-    return true;
+    return a.index<b.index;
   }
 };
 
@@ -26,12 +26,12 @@ struct CompareCoordinate{
     // Todo: this compares the coordinate index
     // passed on construction
     // what should I return?
-    return true;
+    return a.value.at(coordinate) < b.value.at(coordinate);
   }
 };
 
 int main(int argc, char** argv) {
-  assert(argc>1);
+  assert(argc>2);
   ifstream is(argv[1]);
   PointWithIndexVector points;
   while (is) {
