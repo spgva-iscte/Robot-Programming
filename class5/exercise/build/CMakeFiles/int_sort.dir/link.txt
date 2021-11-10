@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/int_sort.dir/int_sort.cpp.o  -o int_sort 

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/spgva/RobotProgramming/class5/exercise/src/binary_tree_template.h
+default_compare.h
+/home/spgva/RobotProgramming/class5/exercise/src/default_compare.h
+iostream
+-
+memory
+-
+
+/home/spgva/RobotProgramming/class5/exercise/src/binary_tree_template_test.cpp
+binary_tree_template.h
+/home/spgva/RobotProgramming/class5/exercise/src/binary_tree_template.h
+iostream
+-
+
+/home/spgva/RobotProgramming/class5/exercise/src/default_compare.h
+

@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/splitter_test.dir/splitter_test.cpp.o  -o splitter_test 
