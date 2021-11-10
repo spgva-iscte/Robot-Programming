@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/spgva/RobotProgramming/class5/exercise/src/02_mat_and_vec/static_vec.h
+iostream
+-
+
+/home/spgva/RobotProgramming/class5/exercise/src/point_multisort_gen_data.cpp
+point_with_index.h
+/home/spgva/RobotProgramming/class5/exercise/src/point_with_index.h
+cassert
+-
+
+/home/spgva/RobotProgramming/class5/exercise/src/point_with_index.h
+static_vec.h
+/home/spgva/RobotProgramming/class5/exercise/src/static_vec.h
+iostream
+-
+

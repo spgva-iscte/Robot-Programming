@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/point_multisort_gen_data.dir/point_multisort_gen_data.cpp.o  -o point_multisort_gen_data 

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/spgva/RobotProgramming/class5/exercise/src/int_sort.cpp
+fstream
+-
+vector
+-
+iostream
+-
+cassert
+-
+algorithm
+-
+
