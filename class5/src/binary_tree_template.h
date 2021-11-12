@@ -28,6 +28,7 @@ struct TreeNode_{
         // _left=0;
         // Todo: assign to left with a unique ptr holding a new tree
         // that has value_ as root
+        _left = PtrType(new ThisType(value_ ));
         return _left;
       }
       return _left->insert(value_);
@@ -37,6 +38,8 @@ struct TreeNode_{
         // _right=0;
         // Todo: assign to right with a unique ptr holding a new tree
         // that has value_ as root
+        _right = PtrType(new ThisType(value_));
+        return _right;
       }
       return _right->insert(value_);
     }
