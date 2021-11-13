@@ -5,20 +5,23 @@
 using namespace std;
 using namespace std;
 
-template <typename VectorType_>
+template <typename PointType_>
 struct PlaneSidePredicate_ {
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
-  using VectorType = VectorType_;
-  VectorType _m // store m;
-  VectorType _n // store n;
-  PlaneSidePredicate_(const VectorType& m_,
-                      const VectorType& n_){
+  using PointType = PointType_;
+  PointType _m; // store m;
+  PointType _n; // store n;
+  PlaneSidePredicate_(const PointType& m_,
+                      const PointType& n_):
     // TODO: hmmmm
-  }
+    _m(m_), 
+    _n(n_){}
   
-  inline bool operator()(const VectorType& p) const {
+  
+  inline bool operator()(const PointType& p) const {
     //TODO: fillme
-  }
+    return (p-_m).dot(_n) > typename PointType::Scalar(0);
+   }
 };
 
 template <typename IteratorType_, typename PredicateType_>
@@ -57,7 +60,7 @@ int main(int argc, char** argv) {
   cerr << "I read" << num_points << "from the stream " << endl;
 
   split(points.begin(), points.end(), PlaneSidePredicate_<Vector3f>(m, n));
-  savePoints(cerr, points);
+  savePoints(cout, points);
   
   return 0;
 }

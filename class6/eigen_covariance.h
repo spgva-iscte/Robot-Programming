@@ -8,12 +8,31 @@ int computeMeanAndCovariance(Eigen::Matrix<typename Iterator_::value_type::Scala
                              Eigen::Matrix<typename Iterator_::value_type::Scalar, Iterator_::value_type::RowsAtCompileTime, Iterator_::value_type::RowsAtCompileTime>& cov,
                              Iterator_ begin,
                              Iterator_ end) {
-  using Scalar=typename Iterator_::value_type::Scalar;
+  using PointType=typename Iterator_::value_type;
+  using Scalar=typename PointType::Scalar;
+  
   mean.setZero();
   cov.setZero();
 
   // TODO:
   // fill mean and covariance according to the formulas
+  Iterator_ start = begin;
+  int count = 0;
+  while (start != end) {
+    mean+=(*start);
+    ++start;
+    ++count;
+  }
+  mean /= Scalar(count);
+
+  start=begin;
+  while (start != end) {
+    PointType delta=(*start-mean);
+    cov +=delta*delta.transpose();
+    ++start;
+  }
+  cov /= Scalar(count-1);
+
   return 0;
 }
 

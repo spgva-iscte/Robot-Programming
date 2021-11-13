@@ -42,10 +42,13 @@ inline Eigen::Matrix3f Rz(float theta) {
   return R;
 }
 
-
-template <int idx>
 struct CoordinateCompare_{
   // TODO
+  int idx = 0;
+  bool operator()(const Vector3f& a, 
+                  const Vector3f& b) {
+    return a(idx) < b(idx);
+  }
 };
 
 int main(int argc, char** argv) {
@@ -81,6 +84,7 @@ int main(int argc, char** argv) {
     transformed_points[i] = iso*points[i];
 
   bool run=true;
+  CoordinateCompare_ sorter;
   while (1) {
     cerr << "Sorting: x, y, z" << endl;
     char s;
@@ -88,17 +92,17 @@ int main(int argc, char** argv) {
     switch (s){
     case 'x':
       cerr << "sorting by x" << endl;
-      std::sort(transformed_points.begin(), transformed_points.end(), CoordinateCompare_<0>());
+      std::sort(transformed_points.begin(), transformed_points.end(), CoordinateCompare_());
       break;
     case 'y':
       cerr << "sorting by y" << endl;
       sorter.idx=1;
-      std::sort(transformed_points.begin(), transformed_points.end(), CoordinateCompare_<1>());
+      std::sort(transformed_points.begin(), transformed_points.end(), CoordinateCompare_());
       break;
     case 'z':
       cerr << "sorting by z" << endl;
       sorter.idx=2;
-      std::sort(transformed_points.begin(), transformed_points.end(), CoordinateCompare_<2>());
+      std::sort(transformed_points.begin(), transformed_points.end(), CoordinateCompare_());
       break;
     default:
       cout << "invalid option, exiting" << endl;
