@@ -10,10 +10,10 @@
   last 4 bits are set as input
 */
 
-typedef struct {
-  uint8_t status: 1; //  first bit: 1=pressed, 0=released
-  uint8_t key:   7; //  key number (between 0 and 16)
-} KeyEvent;
+struct KeyEvent{
+  uint8_t status: 1; //  first bit: 1=pressed, 0=released this means we're only using 1 bit even if the space reserved is 8 bits
+  uint8_t key:   7; //  key number (between 0 and 16) which key is pressed this means we're only using 7 bits
+} ;
 
 
 uint16_t key_status; // this is the full status of our keyboard, 1 bit per key
@@ -22,7 +22,7 @@ uint8_t keyScan(KeyEvent* events){
   uint16_t new_status=0; // new key status
   int num_events=0;      // number of events
   uint8_t key_num=0;         // key number (0..16)
-  for (int r=0; r<4; ++r){
+  for (int r=0; r<4; ++r){ // iterates through the keyboard rows
 
     // this is the mask for the output
     // all 1 and a 0 in position r+4
@@ -44,8 +44,8 @@ uint8_t keyScan(KeyEvent* events){
       uint16_t key_mask=1<<key_num;
       uint16_t col_mask=1<<c;
       
-      // 1 if key pressed
-      uint8_t cs=(row & col_mask)!=0; 
+      // 1 if key pressed (current select)
+      bool cs=(row & col_mask); 
       
       // if key pressed toggle to 1
       // the corresoinding bit
@@ -53,9 +53,9 @@ uint8_t keyScan(KeyEvent* events){
       if (cs){
         new_status |= key_mask;
       }
-      
-      //fetch the previous status of that key
-      uint8_t ps=(key_mask&key_status)!=0;
+       
+      //fetch the previous status of that key (previous select)
+      bool ps=(key_mask&key_status); // 1 if the key was pressed before 0 if the key was not pressed before
 
       // if different from before, shoot an event;
       if (cs!=ps){
