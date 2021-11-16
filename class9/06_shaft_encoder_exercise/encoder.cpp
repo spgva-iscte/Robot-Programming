@@ -4,7 +4,7 @@
 #include <avr/io.h>
 #include "../avr_common/uart.h" // this includes the printf and initializes it
 
-static const uint8_t mask = 0x03;
+static const uint8_t mask = 0x03; // using pin 0 and 1 to understand translate to binary
 
 //! @brief this represents a transition table
 //!        each entry represents the output of that transition
@@ -34,7 +34,7 @@ int main(void) {
   // this initializes the printf/uart things
   printf_init();
 
-  DDRA &= ~mask;  // initialize 2 pins of portA as input
+  DDRA &= ~mask;  // initialize 2 pins of portA (from pin 22 to 29) as input
   PORTA = mask;  // pull up on input bits
 
   // initialize the state as pull up
