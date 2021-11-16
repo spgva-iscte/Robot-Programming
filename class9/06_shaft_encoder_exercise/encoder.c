@@ -4,7 +4,7 @@
 #include <avr/io.h>
 #include "../avr_common/uart.h" // this includes the printf and initializes it
 
-static const uint8_t mask = 0x03;
+static const uint8_t mask = 0x03; //pin 0 and 1 translate to binary to understand
 
 //! @brief this represents a transition table
 //!        each entry represents the output of that transition
@@ -30,19 +30,19 @@ static const int8_t _transition_table []=
     };
 
 //! @brief status
-uint8_t prev_value;
-uint8_t curr_value;
+// uint8_t prev_value;
+// uint8_t curr_value;
 
 int main(void) {
   // this initializes the printf/uart things
   printf_init();
 
-  DDRA = ~mask;  // initialize 2 pins of portA as input
+  DDRA = ~mask;  // initialize 2 pins of portA as input (portA pins from 22 to 29 on arduino)
   PORTA = mask;  // pull up on input bits
 
   // initialize the state as pull up
-  prev_value = mask;
-  curr_value = mask;
+  int prev_value = mask;
+  int curr_value = mask;
 
   int counter = 0;
   
@@ -51,12 +51,10 @@ int main(void) {
     curr_value = PINA;  // read from portA
 
     // compute the index of the transition table
-    uint8_t idx = (prev_value & mask)|((curr_value & mask)<<2);
+    uint8_t idx =  prev_value | (curr_value<<2);
     // get the output value of the current transition
-    int value = _transition_table[idx];
-
     // increment the cnt with the current transition
-    counter += value;
+    counter += _transition_table[idx];
 
     // print multiple things
     printf("PIN<A> value     = %02x\n", curr_value);
